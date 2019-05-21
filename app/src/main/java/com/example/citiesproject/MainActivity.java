@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getCities(){
-        Call<Cities> call = api.getCities(1,3);
+        Call<Cities> call = api.getCities(1,20);
 
         call.enqueue(new Callback<Cities>(){
             @EverythingIsNonNull
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
                 myCities = response.body();
 
-                mAdapter = new MyAdapter(myCities.getElements());
+                mAdapter = new MyAdapter(myCities.getElements(),MainActivity.this);
                 recyclerView.setAdapter(mAdapter);
             }
             @EverythingIsNonNull

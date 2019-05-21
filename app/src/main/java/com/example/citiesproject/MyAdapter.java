@@ -12,9 +12,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<Element> values;
+    Activity activity;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -46,8 +49,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<Element> myDataset) {
+    public MyAdapter(List<Element> myDataset,Activity activity) {
         values = myDataset;
+        this.activity = activity;
     }
 
     // Create new views (invoked by the layout manager)
@@ -72,6 +76,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         final Element element = values.get(position);
         holder.title.setText(element.getMunicipiNom());
         holder.id.setText(element.getIne());
+
+        Picasso.get().load(element.getMunicipiEscut()).into(holder.image);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
